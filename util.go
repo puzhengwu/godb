@@ -12,7 +12,6 @@ import (
 	"strings"
 	"time"
 
-	"code.google.com/p/go-uuid/uuid"
 )
 
 const (
@@ -74,14 +73,6 @@ func ReadMessage(conn *net.TCPConn) (uint16, []byte, error) {
 func GetTableNumber(id string, n uint32) uint32 {
 	h := crc32.ChecksumIEEE([]byte(id)) >> 16 & 0xffff
 	return h % n
-}
-
-func GetUUID() string {
-	return strings.Replace(uuid.NewUUID().String(), "-", "", 0)
-}
-
-func GetUUIDShort() string {
-	return strings.Replace(uuid.NewUUID().String(), "-", "", -1)
 }
 
 type StrTo string
